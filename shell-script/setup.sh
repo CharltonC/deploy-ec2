@@ -56,6 +56,8 @@ git clone $PROJECT_GIT_URL
 cd $PROJECT_FOLDER_NAME
 echo $MSG_GIT_COMPLETE
 
+# Switch branch if needed (todo)
+
 
 # 3. Python
 # Create/Activate Python Virtual Env.
