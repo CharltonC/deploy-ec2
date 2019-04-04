@@ -21,7 +21,6 @@ PROJECT_GIT_URL='git@github.com:CharltonC/deploy-ec2.git'
 
 # Python Virtual Env. & Dependencies
 PY_VENV_FOLDER_NAME='venv'
-PY_VENV_PATH='~/dev/test'
 PY_VENV_DEP_LIST_FILE='requirements.txt'
 
 # Ubuntu Dependencies
