@@ -34,7 +34,7 @@ PROJECT_FOLDER_NAME='deploy-ec2'
 
 # Python Virtual Env. & Dependencies
 PY_VENV_FOLDER_NAME='venv'
-PY_VENV_DEP_LIST_FILE='requirements.txt'
+PY_VENV_DEP_LIST_FILE='remote/requirements.txt'
 
 # Ubuntu Dependencies
 UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib'
