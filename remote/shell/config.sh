@@ -7,12 +7,13 @@ PY_VENV_FOLDER_NAME='venv'
 PY_VENV_DEP_LIST_FILE='remote/requirements.txt'
 
 # Ubuntu Dependencies
-UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib'
+UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
 UBUNTU_USERNAME='ubuntu'
 
 # Aws
+APP_IP_SELF='0.0.0.0'
 APP_IP_ADDR=''
-APP_PORT=80
+APP_PORT=8000
 
 # Django
 DJ_STATIC_FOLDER='static'

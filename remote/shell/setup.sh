@@ -17,12 +17,12 @@
 
 # Usage Example:
 # 1. Local:
-# scp -i ~/.ssh/aws-ec2.pem ssh/{id_rsa,id_rsa.pub} ubuntu@ec2-13-210-68-168.ap-southeast-2.compute.amazonaws.com:/home/ubuntu/.ssh/
+# scp -i ~/.ssh/aws-ec2.pem remote/ssh/{id_rsa,id_rsa.pub} ubuntu@ec2-13-210-68-168.ap-southeast-2.compute.amazonaws.com:/home/ubuntu/.ssh/
 # ssh -i ~/.ssh/aws-ec2.pem ubuntu@ec2-13-210-68-168.ap-southeast-2.compute.amazonaws.com
 #
 # 2. Remote:
 # eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
-# cd deploy-ec2/shell && chmod +x setup.sh && source ./setup.sh
+# cd deploy-ec2/remote/shell && chmod +x setup.sh && source ./setup.sh
 
 
 ######################
@@ -37,7 +37,7 @@ PY_VENV_FOLDER_NAME='venv'
 PY_VENV_DEP_LIST_FILE='remote/requirements.txt'
 
 # Ubuntu Dependencies
-UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib'
+UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
 
 # Message when setup is Complete
 logStart() {

@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# Global Config Variable
-source ./config.sh
+# Global Config Variable (working)
+# - `$(dirname $0)` or `${0%/*}` means current directory to make sure the relative path is always working
+CURR_PATH=${0%/*}
+source $CURR_PATH/config.sh
 
 
-# Ubuntu - Locale & Packages
+# Ubuntu - Locale & Packages (working)
 logStart 'Ubuntu'
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -13,7 +15,7 @@ pip3 install virtualenv
 logEnd 'Ubuntu'
 
 
-# Python
+# Python (working)
 logStart 'Python Virtual Env.'
 cd ~/$PROJECT_ROOT_FOLDER_NAME/$PROJECT_FOLDER_NAME
 python3 -m virtualenv $PY_VENV_FOLDER_NAME
@@ -22,15 +24,22 @@ pip install -r $PY_VENV_DEP_LIST_FILE
 logEnd 'Python Virtual Env.'
 
 
-# Database - PostgreSQL
-sudo psql -u $DB_SHELL_USERNAME -c $(source ./database-sql.sh)
+# Database - PostgreSQL (working)
+sudo -u $DB_SHELL_USERNAME psql -c "DROP DATABASE $DB_NAME"
+sudo -u $DB_SHELL_USERNAME psql -c "DROP USER $DB_USERNAME"
+sudo -u $DB_SHELL_USERNAME psql <<EOF
+CREATE DATABASE $DB_NAME;
+CREATE USER $DB_USERNAME WITH PASSWORD '$DB_PASSWORD';
+ALTER ROLE $DB_USERNAME SET client_encoding TO 'utf8';
+ALTER ROLE $DB_USERNAME SET default_transaction_isolation TO 'read committed';
+ALTER ROLE $DB_USERNAME SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USERNAME;
+EOF
 
 
 # Http Web Server - Gunicorn
 logStart 'Gunicorn'
-gunicorn --bind $APP_IP_ADDR:$APP_PORT $PROJECT_FOLDER_NAME.wsgi
 sudo source ./file-generate-gunicorn-service-config.sh > $GUNICORN_SERVICE_CONF_FILE
-sudo source ./file-generate-gunicorn-socket-config.sh > $GUNICORN_SOCKET_CONF_FILE
 sudo systemctl start gunicorn.socket
 sudo systemctl enable gunicorn.socket
 sudo systemctl status gunicorn.socket
@@ -39,9 +48,8 @@ logEnd 'Gunicorn'
 
 # Proxy Server - Nginx
 logStart 'Nginx'
-sudo source ./file-generate-nginx-config.sh > $NGINX_CONF_FILE
+sudo source ./nginx-config.sh > $NGINX_CONF_FILE
 sudo ln -s /etc/nginx/site-available/$PROJECT_FOLDER_NAME /etc/nginx/sites-enabled
-# sudo ufw allow 'Ngnix Full'
 sudo nginx -t
 sudo systemctl restart nginx
 sudo systemctl restart gunicorn
