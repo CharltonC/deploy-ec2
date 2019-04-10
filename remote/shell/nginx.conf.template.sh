@@ -9,16 +9,16 @@ server {
 	}
 
 	location /$DJ_STATIC_FOLDER/ {
-		root /home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER_NAME/$PROJECT_FOLDER_NAME;
+		root /home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER;
 	}
 
 	location /$DJ_MEDIA_FOLDER/ {
-		root /home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER_NAME/$PROJECT_FOLDER_NAME;
+		root /home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER;
 	}
 
 	location / {
 		include proxy_params;
-		proxy_pass http://unix:/run/gunicorn.sock;
+		proxy_pass http://unix:$NGINX_CONF_FILE_PATH;
 	}
 }
 )"

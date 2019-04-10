@@ -1,19 +1,30 @@
+######################
+# NAMING CONVENTION
+######################
+# File/Folder/Path
+#   FOLDER    e.g. 'foldername'
+#   FILE      e.g. 'file.ext'
+#   PATH      e.g. 'path/subpath',  'path/subpath/file.ext'
+#
+
+
 # Project
-PROJECT_ROOT_FOLDER_NAME='dev'
-PROJECT_FOLDER_NAME='deploy-ec2'
+PROJECT_ROOT_FOLDER='dev'
+PROJECT_FOLDER='deploy-ec2'
+PROJECT_PATH="~/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
 
 # Python Virtual Env. & Dependencies
-PY_VENV_FOLDER_NAME='venv'
-PY_VENV_DEP_LIST_FILE='remote/requirements.txt'
+PY_VENV_FOLDER='venv'
+PY_VENV_DEP_LIST_FILE_PATH="$PROJECT_PATH/remote/requirements.txt"
 
 # Ubuntu Dependencies
-UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
+UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
 UBUNTU_USERNAME='ubuntu'
 
 # Aws
 APP_IP_SELF='0.0.0.0'
 APP_IP_ADDR=''
-APP_PORT=8000
+APP_PORT=80
 
 # Django
 DJ_STATIC_FOLDER='static'
@@ -28,10 +39,15 @@ DB_NAME='dbtest'
 DB_USERNAME='dbtestuser'
 DB_PASSWORD='dbtestpassword'
 
-# Server
-GUNICORN_SERVICE_CONF_FILE='/etc/systemd/system/gunicorn.service'
-GUNICORN_SOCKET_CONF_FILE='/etc/systemd/system/gunicorn.socket'
-NGINX_CONF_FILE="/etc/nginx/sites-available/$PROJECT_FOLDER_NAME"
+# Http Server - Gunicorn
+GUNICORN_SERVICE_CONF_TEMPLATE_FILE_PATH="$PROJECT_PATH/remote/shell/gunicorn.service.template.sh"
+GUNICORN_SERVICE_CONF_FILE_PATH='/etc/systemd/system/gunicorn.service'
+GUNICORN_SOCKET_CONF_FILE_PATH='/etc/systemd/system/gunicorn.socket'
+
+# Proxy Server - Nginx
+NGINX_CONF_ROOT_PATH="/etc/nginx/sites-available"
+NGINX_CONF_TEMPLATE_FILE_PATH="$PROJECT_PATH/remote/shell/nginx.conf.template.sh"
+NGINX_CONF_FILE_PATH="$NGINX_CONF_ROOT_PATH/$PROJECT_FOLDER"
 
 # Message when setup is Complete
 logStart() {

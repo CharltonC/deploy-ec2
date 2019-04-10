@@ -29,15 +29,15 @@
 # CONFIG/VARIABLES
 ######################
 # Project
-PROJECT_ROOT_FOLDER_NAME='dev'
-PROJECT_FOLDER_NAME='deploy-ec2'
+PROJECT_ROOT_FOLDER='dev'
+PROJECT='deploy-ec2'
 
 # Python Virtual Env. & Dependencies
-PY_VENV_FOLDER_NAME='venv'
-PY_VENV_DEP_LIST_FILE='remote/requirements.txt'
+PY_VENV_FOLDER='venv'
+PY_VENV_DEP_LIST_FILE_PATH='remote/requirements.txt'
 
 # Ubuntu Dependencies
-UBUNTU_APT_DEP='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
+UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
 
 # Message when setup is Complete
 logStart() {
@@ -55,7 +55,7 @@ logEnd() {
 logStart 'Ubuntu'
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y $UBUNTU_APT_DEP
+sudo apt-get install -y $UBUNTU_APT_DEP_LIST
 pip3 install virtualenv
 logEnd 'Ubuntu'
 
@@ -67,12 +67,12 @@ logEnd 'Ubuntu'
 # 3. Python
 # Create/Activate Python Virtual Env.
 logStart 'Python Virtual Env.'
-cd ~/$PROJECT_ROOT_FOLDER_NAME/$PROJECT_FOLDER_NAME
-python3 -m virtualenv $PY_VENV_FOLDER_NAME
-source $PY_VENV_FOLDER_NAME/bin/activate
+cd ~/$PROJECT_ROOT_FOLDER/$PROJECT
+python3 -m virtualenv $PY_VENV_FOLDER
+source $PY_VENV_FOLDER/bin/activate
 
 # Install dependencies & exit Virtual Env.
-pip install -r $PY_VENV_DEP_LIST_FILE
+pip install -r $PY_VENV_DEP_LIST_FILE_PATH
 logEnd 'Python Virtual Env.'
 
 

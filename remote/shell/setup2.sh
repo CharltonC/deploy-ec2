@@ -10,23 +10,21 @@ source $CURR_PATH/config.sh
 logStart 'Ubuntu'
 sudo apt-get update
 sudo apt-get upgrade -y
-sudo apt-get install -y $UBUNTU_APT_DEP
+sudo apt-get install -y $UBUNTU_APT_DEP_LIST
 pip3 install virtualenv
 logEnd 'Ubuntu'
 
 
 # Python (working)
 logStart 'Python Virtual Env.'
-cd ~/$PROJECT_ROOT_FOLDER_NAME/$PROJECT_FOLDER_NAME
-python3 -m virtualenv $PY_VENV_FOLDER_NAME
-source $PY_VENV_FOLDER_NAME/bin/activate
-pip install -r $PY_VENV_DEP_LIST_FILE
+cd $PROJECT_PATH
+python3 -m virtualenv $PY_VENV_FOLDER
+source $PY_VENV_FOLDER/bin/activate
+pip install -r $PY_VENV_DEP_LIST_FILE_PATH
 logEnd 'Python Virtual Env.'
 
 
 # Database - PostgreSQL (working)
-sudo -u $DB_SHELL_USERNAME psql -c "DROP DATABASE $DB_NAME"
-sudo -u $DB_SHELL_USERNAME psql -c "DROP USER $DB_USERNAME"
 sudo -u $DB_SHELL_USERNAME psql <<EOF
 CREATE DATABASE $DB_NAME;
 CREATE USER $DB_USERNAME WITH PASSWORD '$DB_PASSWORD';
@@ -39,20 +37,18 @@ EOF
 
 # Http Web Server - Gunicorn
 logStart 'Gunicorn'
-sudo source ./file-generate-gunicorn-service-config.sh > $GUNICORN_SERVICE_CONF_FILE
-sudo systemctl start gunicorn.socket
-sudo systemctl enable gunicorn.socket
-sudo systemctl status gunicorn.socket
+source $GUNICORN_SERVICE_CONF_TEMPLATE_FILE_PATH > $GUNICORN_SERVICE_CONF_FILE_PATH
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
 logEnd 'Gunicorn'
 
 
 # Proxy Server - Nginx
 logStart 'Nginx'
-sudo source ./nginx-config.sh > $NGINX_CONF_FILE
-sudo ln -s /etc/nginx/site-available/$PROJECT_FOLDER_NAME /etc/nginx/sites-enabled
+source $NGINX_CONF_TEMPLATE_FILE_PATH > $NGINX_CONF_FILE_PATH
+sudo ln -s $NGINX_CONF_FILE_PATH $NGINX_CONF_ROOT_PATH
 sudo nginx -t
 sudo systemctl restart nginx
-sudo systemctl restart gunicorn
 logEnd 'Nginx'
 
 
