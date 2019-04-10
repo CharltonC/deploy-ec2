@@ -4,6 +4,8 @@
 # File/Folder/Path
 #   FOLDER    e.g. 'foldername'
 #   FILE      e.g. 'file.ext'
+
+# DOES NOT WORK
 #   PATH      e.g. 'path/subpath',  'path/subpath/file.ext'
 #
 
@@ -11,11 +13,11 @@
 # Project
 PROJECT_ROOT_FOLDER='dev'
 PROJECT_FOLDER='deploy-ec2'
-PROJECT_PATH="~/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
+PROJECT_DJANGO_FOLDER='deploy_ec2'
 
 # Python Virtual Env. & Dependencies
 PY_VENV_FOLDER='venv'
-PY_VENV_DEP_LIST_FILE_PATH="$PROJECT_PATH/remote/requirements.txt"
+PY_VENV_DEP_LIST_FILE='requirements.txt'
 
 # Ubuntu Dependencies
 UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
@@ -40,14 +42,15 @@ DB_USERNAME='dbtestuser'
 DB_PASSWORD='dbtestpassword'
 
 # Http Server - Gunicorn
-GUNICORN_SERVICE_CONF_TEMPLATE_FILE_PATH="$PROJECT_PATH/remote/shell/gunicorn.service.template.sh"
+GUNICORN_SOCKET_CONF_TEMPLATE_FILE="gunicorn.socket.template.sh"
+GUNICORN_SERVICE_CONF_TEMPLATE_FILE="gunicorn.service.template.sh"
 GUNICORN_SERVICE_CONF_FILE_PATH='/etc/systemd/system/gunicorn.service'
 GUNICORN_SOCKET_CONF_FILE_PATH='/etc/systemd/system/gunicorn.socket'
 
 # Proxy Server - Nginx
-NGINX_CONF_ROOT_PATH="/etc/nginx/sites-available"
-NGINX_CONF_TEMPLATE_FILE_PATH="$PROJECT_PATH/remote/shell/nginx.conf.template.sh"
-NGINX_CONF_FILE_PATH="$NGINX_CONF_ROOT_PATH/$PROJECT_FOLDER"
+NGINX_CONF_ROOT_PATH='/etc/nginx/sites-available'
+NGINX_CONF_TEMPLATE_FILE='nginx.conf.template.sh'
+NGINX_SITE_ROOT_PATH='/etc/nginx/sites-enabled'
 
 # Message when setup is Complete
 logStart() {

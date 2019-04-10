@@ -22,7 +22,7 @@
 #
 # 2. Remote:
 # eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
-# cd deploy-ec2/remote/shell && chmod +x setup.sh && source ./setup.sh
+# cd ~/dev/deploy-ec2/remote/shell && chmod +x setup2.sh && source ./setup2.sh
 
 
 ######################
