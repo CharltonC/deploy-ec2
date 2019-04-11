@@ -1,28 +1,31 @@
 #!/bin/bash
 
 ######################
-# VARIABLE NAMING CONVENTION
+# CONFIG - VARIABLES
 ######################
-#   Value    e.g. 'text' | 123
-#   Folder   e.g. 'foldername'
-#   File     e.g. 'file.ext'
-#   Path     e.g. 'path/subpath',  'path/subpath/file.ext'
+#  Naming Convention
+#  - Value    e.g. 'text' | 123 | "$VAR" | etc
+#  - Folder   e.g. 'foldername'
+#  - File     e.g. 'file.ext'
+#  - Path     e.g. 'path/subpath',  'path/subpath/file.ext'
+
+# Ubuntu
+UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
+UBUNTU_USERNAME='ubuntu'
 
 # Project
 PROJECT_ROOT_FOLDER='dev'
 PROJECT_FOLDER='deploy-ec2'
 PROJECT_DJANGO_FOLDER='deploy_ec2'
 PROJECT_FOLDER_PATH="~/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
+PROJECT_FOLDER_ABS_PATH="/home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
 PROJECT_SHELL_FOLDER_PATH="$PROJECT_FOLDER_PATH/remote/shell"
 PROJECT_DJANGO_FOLDER_PATH="$PROJECT_FOLDER_PATH/$PROJECT_DJANGO_FOLDER"
+PROJECT_DJANGO_FOLDER_ABS_PATH="$PROJECT_FOLDER_ABS_PATH/$PROJECT_DJANGO_FOLDER"
 
-# Python Virtual Env. & Dependencies
+# Python
 PY_VENV_FOLDER='venv'
 PY_VENV_DEP_LIST_FILE_PATH="$PROJECT_FOLDER_PATH/remote/requirements.txt"
-
-# Ubuntu Dependencies
-UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
-UBUNTU_USERNAME='ubuntu'
 
 # Aws
 APP_IP_SELF='0.0.0.0'
@@ -65,10 +68,10 @@ logEnd() {
 ######################
 # TASKS
 ######################
-source $PROJECT_SHELL_FOLDER_PATH/setup-ubuntu.sh
-source $PROJECT_SHELL_FOLDER_PATH/setup-python.sh
-source $PROJECT_SHELL_FOLDER_PATH/setup-database.sh
-source $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
-source $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
-source $PROJECT_SHELL_FOLDER_PATH/setup-django.sh
-logEnd 'All'
+# source $PROJECT_SHELL_FOLDER_PATH/setup-ubuntu.sh
+# source $PROJECT_SHELL_FOLDER_PATH/setup-python.sh
+# source $PROJECT_SHELL_FOLDER_PATH/setup-database.sh
+# source $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
+# source $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
+# source $PROJECT_SHELL_FOLDER_PATH/setup-django.sh
+# logEnd 'All'
