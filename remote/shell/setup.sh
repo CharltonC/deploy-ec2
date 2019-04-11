@@ -5,12 +5,14 @@
 ######################
 # 1. Local - Copy the SSH key to Remote:
 # scp -i ~/.ssh/aws-ec2.pem remote/ssh/{id_rsa,id_rsa.pub} ubuntu@<vpsIpv6IpAddress>:/home/ubuntu/.ssh/
-
-# 2. Local - Login
+#
+# 2. Local - Login to Remote
 # ssh -i ~/.ssh/aws-ec2.pem ubuntu@<vpsIpv6IpAddress>
 #
-# 2. Remote:
+# 3. Remote - Clone the repository
 # eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
+#
+# 4. Remote - Run the Setup Shell Script
 # cd ~/dev/deploy-ec2/remote/shell && chmod +x setup.sh && source ./setup.sh
 
 
