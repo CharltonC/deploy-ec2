@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Template of a Nginx config file "<djangoProjectName>"
+
 echo "$(cat <<EOF
 server {
 	listen $APP_PORT;

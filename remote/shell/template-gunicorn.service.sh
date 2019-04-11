@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# Template of a "gunicorn.service" config file
+
 echo "$(cat <<EOF
 [Unit]
 Description=gunicorn daemon

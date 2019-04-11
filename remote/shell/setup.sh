@@ -20,8 +20,8 @@
 # nano ~/dev/deploy-ec2/deploy_ec2/deploy_ec2/settings.py
 # ALLOW_HOST = [ '...' ]
 #
-# 6. Remote - Run the Setup Shell Script
-# cd ~/dev/deploy-ec2/remote/shell && chmod +x setup.sh && sudo ./setup.sh
+# 6. Remote - Run the Setup Shell Script (already `chmod +x`)
+# sudo ~/dev/deploy-ec2/remote/shell/setup.sh
 
 
 ######################
@@ -38,10 +38,6 @@
 # - Works (quotes + absolute):   "/home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
 # - Works (no quotes + ${}):     ~/${PROJECT_ROOT_FOLDER}/${PROJECT_FOLDER}
 # - Works (hard code):           ~/dev/deploy-ec2
-#
-# Todos:
-# - don't use quotes for path even with variable interpolation (comment & variable)
-# - comment for each task
 
 # Ubuntu
 UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
