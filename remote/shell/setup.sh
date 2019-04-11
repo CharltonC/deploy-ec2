@@ -12,24 +12,32 @@
 # 3. Remote - Clone the repository
 # eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
 #
-# 4. Remote - Run the Setup Shell Script
-# cd ~/dev/deploy-ec2/remote/shell && chmod +x setup.sh && source ./setup.sh
+# 4. Remote - Open the Config file & Add the IP Address
+# nano ~/dev/deploy-ec2/remote/shell/setup.sh
+# APP_IP_ADDR='...'
+#
+# 5. Remote - Run the Setup Shell Script
+# cd ~/dev/deploy-ec2/remote/shell && chmod +x setup.sh && sudo ./setup.sh
 
 
 ######################
 # CONFIG - VARIABLES
 ######################
-#  Naming Convention
-#  - Value    e.g. 'text' | 123 | "$VAR" | etc
-#  - Folder   e.g. 'foldername'
-#  - File     e.g. 'file.ext'
-#  - Path     e.g. 'path/subpath',  'path/subpath/file.ext'
+# Naming Convention
+# - Value    e.g. 'text' | 123 | "$VAR" | etc
+# - Folder   e.g. 'foldername'
+# - File     e.g. 'file.ext'
+# - Path     e.g. '/path/subpath',  '/path/subpath/file.ext'
+#
+# Path
+# - Must be absolute path else `~/` (user directory based) doesn't work
 
 # Ubuntu
 UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
 UBUNTU_USERNAME='ubuntu'
 
 # Project
+# - This one doesn't work: PROJECT_FOLDER_PATH="~/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
 PROJECT_ROOT_FOLDER='dev'
 PROJECT_FOLDER='deploy-ec2'
 PROJECT_DJANGO_FOLDER='deploy_ec2'
@@ -85,7 +93,7 @@ logEnd() {
 # source $PROJECT_SHELL_FOLDER_PATH/setup-ubuntu.sh
 # source $PROJECT_SHELL_FOLDER_PATH/setup-python.sh
 # source $PROJECT_SHELL_FOLDER_PATH/setup-database.sh
-# source $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
-# source $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
+# sudo $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
+# sudo $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
 # source $PROJECT_SHELL_FOLDER_PATH/setup-django.sh
 # logEnd 'All'
