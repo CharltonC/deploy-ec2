@@ -1,43 +1,57 @@
-######################
-# GUIDE
-######################
-# Requirements:
-# - SSH must be setup between Remote Host & Github for clone/pull
-# - SSH Agent needs to be eval (required for AWS EC2)
-# - Executable permission is added for this Shell Script file via `chmod +x <fileName>.sh` (under project folder)
-
-# Usage Syntax:
-# 1. Local - Copy the SSH keys from Local to Remote ".ssh" folder, Login
-#   scp -i ~/.ssh/<awsKey>.pem <sshKeyPath>/{id_rsa,id_rsa.pub} <userName>@<vpsPublicDnsIpAddr>:/home/<userName>/.ssh/
-#   ssh -i ~/.ssh/<awsKey>.pem <userName>@<vpsPublicDnsIpAddr>
-#
-# 2. Remote - Setup project & Run its Setup Shell Script:
-#   eval $(ssh-agent) && cd ~/ && mkdir <projectRootName> && cd <projectRootName> && git clone <gitProjectUrl>
-#   cd <projectFolder>/<shellFolder> && chmod +x <setupScript>.sh && source ./<setupScript>.sh
-
-# Usage Example:
-# 1. Local:
-# scp -i ~/.ssh/aws-ec2.pem remote/ssh/{id_rsa,id_rsa.pub} ubuntu@ec2-13-210-68-168.ap-southeast-2.compute.amazonaws.com:/home/ubuntu/.ssh/
-# ssh -i ~/.ssh/aws-ec2.pem ubuntu@ec2-13-210-68-168.ap-southeast-2.compute.amazonaws.com
-#
-# 2. Remote:
-# eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
-# cd ~/dev/deploy-ec2/remote/shell && chmod +x setup2.sh && source ./setup2.sh
-
+#!/bin/bash
 
 ######################
-# CONFIG/VARIABLES
+# VARIABLE NAMING CONVENTION
 ######################
+#   Value    e.g. 'text' | 123
+#   Folder   e.g. 'foldername'
+#   File     e.g. 'file.ext'
+#   Path     e.g. 'path/subpath',  'path/subpath/file.ext'
+
 # Project
 PROJECT_ROOT_FOLDER='dev'
-PROJECT='deploy-ec2'
+PROJECT_FOLDER='deploy-ec2'
+PROJECT_DJANGO_FOLDER='deploy_ec2'
+PROJECT_FOLDER_PATH="~/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
+PROJECT_SHELL_FOLDER_PATH="$PROJECT_FOLDER_PATH/remote/shell"
+PROJECT_DJANGO_FOLDER_PATH="$PROJECT_FOLDER_PATH/$PROJECT_DJANGO_FOLDER"
 
 # Python Virtual Env. & Dependencies
 PY_VENV_FOLDER='venv'
-PY_VENV_DEP_LIST_FILE_PATH='remote/requirements.txt'
+PY_VENV_DEP_LIST_FILE_PATH="$PROJECT_FOLDER_PATH/remote/requirements.txt"
 
 # Ubuntu Dependencies
 UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
+UBUNTU_USERNAME='ubuntu'
+
+# Aws
+APP_IP_SELF='0.0.0.0'
+APP_IP_ADDR=''
+APP_PORT=80
+
+# Django
+DJ_STATIC_FOLDER='static'
+DJ_MEDIA_FOLDER='media'
+DJ_SUPERUSER_USERNAME='djsuperuser'
+DJ_SUPERUSER_PASSWORD='djsuperuser1234'
+DJ_SUPERUSER_EMAIL='xyz@xyz.com'
+
+# Database
+DB_SHELL_USERNAME='postgres'
+DB_NAME='dbtest'
+DB_USERNAME='dbtestuser'
+DB_PASSWORD='dbtestpassword'
+
+# Http Server - Gunicorn
+GUNICORN_SOCKET_CONF_TEMPLATE_FILE_PATH="$PROJECT_SHELL_FOLDER_PATH/template-gunicorn.socket.sh"
+GUNICORN_SERVICE_CONF_TEMPLATE_FILE="$PROJECT_SHELL_FOLDER_PATH/template-gunicorn.service.sh"
+GUNICORN_SERVICE_CONF_FILE_PATH='/etc/systemd/system/gunicorn.service'
+GUNICORN_SOCKET_CONF_FILE_PATH='/etc/systemd/system/gunicorn.socket'
+
+# Proxy Server - Nginx
+NGINX_CONF_TEMPLATE_FILE_PATH="$PROJECT_SHELL_FOLDER_PATH/template-nginx.conf.sh"
+NGINX_CONF_FILE_PATH="/etc/nginx/sites-available/$PROJECT_DJANGO_FOLDER"
+NGINX_SITE_ROOT_PATH='/etc/nginx/sites-enabled'
 
 # Message when setup is Complete
 logStart() {
@@ -51,42 +65,10 @@ logEnd() {
 ######################
 # TASKS
 ######################
-# 1. Ubuntu - Locale & Packages
-logStart 'Ubuntu'
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install -y $UBUNTU_APT_DEP_LIST
-pip3 install virtualenv
-logEnd 'Ubuntu'
-
-
-# 2. Git
-# Switch branch if needed (todo)
-
-
-# 3. Python
-# Create/Activate Python Virtual Env.
-logStart 'Python Virtual Env.'
-cd ~/$PROJECT_ROOT_FOLDER/$PROJECT
-python3 -m virtualenv $PY_VENV_FOLDER
-source $PY_VENV_FOLDER/bin/activate
-
-# Install dependencies & exit Virtual Env.
-pip install -r $PY_VENV_DEP_LIST_FILE_PATH
-logEnd 'Python Virtual Env.'
-
-
-# Database (todo)
-
-
-# Gunicorn (todo)
-
-
-# Ngnix (todo)
-
-
-# Django Settings (todo)
-
-
-# Done
+source $PROJECT_SHELL_FOLDER_PATH/setup-ubuntu.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-python.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-database.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-django.sh
 logEnd 'All'
