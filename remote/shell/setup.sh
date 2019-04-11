@@ -21,7 +21,7 @@
 # ALLOW_HOST = [ '...' ]
 #
 # 6. Remote - Run the Setup Shell Script (already `chmod +x`)
-# source ~/dev/deploy-ec2/remote/shell/setup.sh
+# sudo -s source ~/dev/deploy-ec2/remote/shell/setup.sh
 
 
 ######################
@@ -77,7 +77,6 @@ DB_PASSWORD='dbtestpassword'
 GUNICORN_SOCKET_CONF_TEMPLATE_FILE_PATH="$PROJECT_SHELL_FOLDER_PATH/template-gunicorn.socket.sh"
 GUNICORN_SERVICE_CONF_TEMPLATE_FILE="$PROJECT_SHELL_FOLDER_PATH/template-gunicorn.service.sh"
 GUNICORN_SERVICE_CONF_FILE_PATH='/etc/systemd/system/gunicorn.service'
-GUNICORN_SOCKET_CONF_FILE_PATH='/etc/systemd/system/gunicorn.socket'
 
 # Proxy Server - Nginx
 NGINX_CONF_TEMPLATE_FILE_PATH="$PROJECT_SHELL_FOLDER_PATH/template-nginx.conf.sh"
