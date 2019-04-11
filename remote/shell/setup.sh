@@ -21,7 +21,7 @@
 # ALLOW_HOST = [ '...' ]
 #
 # 6. Remote - Run the Setup Shell Script (already `chmod +x`)
-# sudo ~/dev/deploy-ec2/remote/shell/setup.sh
+# source ~/dev/deploy-ec2/remote/shell/setup.sh
 
 
 ######################

@@ -10,4 +10,7 @@ python3 -m virtualenv $PY_VENV_FOLDER
 source $PY_VENV_FOLDER/bin/activate
 pip install -r $PY_VENV_DEP_LIST_FILE_PATH
 
+# Deactivate
+deactivate
+
 logEnd 'Python Virtual Env.'
