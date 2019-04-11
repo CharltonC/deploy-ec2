@@ -30,14 +30,20 @@
 # - Path     e.g. '/path/subpath',  '/path/subpath/file.ext'
 #
 # Path
-# - Must be absolute path else `~/` (user directory based) doesn't work
+# - Doesn't work (quotes):       ~"/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
+# - Works (quotes + absolute):   "/home/$UBUNTU_USERNAME/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
+# - Works (no quotes + ${}):     ~/${PROJECT_ROOT_FOLDER}/${PROJECT_FOLDER}
+# - Works (hard code):           ~/dev/deploy-ec2
+#
+# Todos:
+# - don't use quotes for path even with variable interpolation (comment & variable)
+# - comment for each task
 
 # Ubuntu
 UBUNTU_APT_DEP_LIST='python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx'
 UBUNTU_USERNAME='ubuntu'
 
 # Project
-# - This one doesn't work: PROJECT_FOLDER_PATH="~/$PROJECT_ROOT_FOLDER/$PROJECT_FOLDER"
 PROJECT_ROOT_FOLDER='dev'
 PROJECT_FOLDER='deploy-ec2'
 PROJECT_DJANGO_FOLDER='deploy_ec2'
