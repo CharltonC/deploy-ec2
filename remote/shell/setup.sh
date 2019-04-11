@@ -16,7 +16,11 @@
 # nano ~/dev/deploy-ec2/remote/shell/setup.sh
 # APP_IP_ADDR='...'
 #
-# 5. Remote - Run the Setup Shell Script
+# 5. Remote - Open the Django setting file & Add the IP Address
+# nano ~/dev/deploy-ec2/deploy_ec2/deploy_ec2/settings.py
+# ALLOW_HOST = [ '...' ]
+#
+# 6. Remote - Run the Setup Shell Script
 # cd ~/dev/deploy-ec2/remote/shell && chmod +x setup.sh && sudo ./setup.sh
 
 
@@ -96,10 +100,10 @@ logEnd() {
 ######################
 # TASKS
 ######################
-# source $PROJECT_SHELL_FOLDER_PATH/setup-ubuntu.sh
-# source $PROJECT_SHELL_FOLDER_PATH/setup-python.sh
-# source $PROJECT_SHELL_FOLDER_PATH/setup-database.sh
-# sudo $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
-# sudo $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
-# source $PROJECT_SHELL_FOLDER_PATH/setup-django.sh
-# logEnd 'All'
+source $PROJECT_SHELL_FOLDER_PATH/setup-ubuntu.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-python.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-database.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-gunicorn.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-nginx.sh
+source $PROJECT_SHELL_FOLDER_PATH/setup-django.sh
+logEnd 'All'
