@@ -58,10 +58,11 @@ PY_VENV_DEP_LIST_FILE_PATH="$PROJECT_FOLDER_PATH/remote/requirements.txt"
 
 # Aws
 APP_IP_SELF='0.0.0.0'
-APP_IP_ADDR=''
+APP_IP_ADDR=$1  # from command-line argument
 APP_PORT=80
 
 # Django
+DJ_SETTINGS_FILE_PATH="$PROJECT_DJANGO_FOLDER_PATH/$PROJECT_DJANGO_FOLDER/settings.py"
 DJ_STATIC_FOLDER='static'
 DJ_MEDIA_FOLDER='media'
 DJ_SUPERUSER_USERNAME='djsuperuser'
