@@ -12,17 +12,9 @@
 # 3. Remote - Clone the repository
 # eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
 #
-# 4. Remote - Open the Config file & Add the IP Address
-# nano ~/dev/deploy-ec2/remote/shell/setup.sh
-# APP_IP_ADDR='...'
-#
-# 5. Remote - Open the Django setting file & Add the IP Address
-# nano ~/dev/deploy-ec2/deploy_ec2/deploy_ec2/settings.py
-# ALLOW_HOST = [ '...' ]
-#
-# 6. Remote - Run the Setup Shell Script (already `chmod +x`)
+# 4. Remote - Run the Setup Shell Script (already `chmod +x`)
 # - note it must be `source` not `sudo`
-# source ~/dev/deploy-ec2/remote/shell/setup.sh
+# source ~/dev/deploy-ec2/remote/shell/setup.sh <appIpAddress>
 
 
 ######################
