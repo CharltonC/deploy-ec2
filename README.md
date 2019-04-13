@@ -22,7 +22,9 @@
     * new non-root or non-ubuntu user (for security)
     * firewall (for security)
     * domain binding
-
+    * separate local settings and production settings files for Django
+    * `SECRET_KEY` and `DEBUG = True` not removed for Django
+    * URL not setup for Django 
 
 ## Folder structure
 ```
