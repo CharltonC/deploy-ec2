@@ -11,7 +11,7 @@
 * This demo focuses on automating the deployment process by using Variable configuration (see `setup.sh` file)
 
 * Tech Stack
-    * Ubuntu (v18+, from AWS EC2)
+    * Ubuntu (v18.04, from AWS EC2)
     * Python (v3+, from AWS EC2)
     * Python VirtualEnv
     * Django (v2.2+)    
@@ -54,9 +54,12 @@ deploy-ec2/         // project directory
 ```    
 
 ## Getting Started
-1. Remote - Get Public DNS IP Address and App IP Address, e.g. 
-* Public DNS IP Address `ec2-203-0-113-25.compute-1.amazonaws.com`
-* App IP Address `123.456.78`
+1. Remote - AWS
+* This assumes you already have your `.pem` key
+* This assumes you already have your security group setup (which allows the App IP Address to be accessed via HTTP)
+* Get Public DNS IP Address and App IP Address, e.g. 
+    * Public DNS IP Address `ec2-203-0-113-25.compute-1.amazonaws.com`
+    * App IP Address `123.456.78`
 
 2. Local - Generate the list of Commands required (assume under project directory):
 ```
@@ -78,5 +81,5 @@ source remote/shell/template-setup-generate.sh <publicDnsIpAddr> <appIpAddr>
  # 4. Remote - Run the Setup Shell Script (): 
  # - it must be `source` not `sudo` 
  # - this assumes the shell script has already been `chmod +x ...` 
- source remote/shell/setup.sh 789.123 
+ source deploy-ec2/remote/shell/setup.sh 789.123 
 ```

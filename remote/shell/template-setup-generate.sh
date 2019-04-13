@@ -32,6 +32,6 @@ $COLOR_CMD eval \$(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@g
 $COLOR_STEP # 4. Remote - Run the Setup Shell Script (): $COLOR_END
 $COLOR_STEP # - it must be \`source\` not \`sudo\` $COLOR_END
 $COLOR_STEP # - this assumes the shell script has already been \`chmod +x ...\` $COLOR_END
-$COLOR_CMD source remote/shell/setup.sh $APP_IP_ADDR $COLOR_END
+$COLOR_CMD source deploy-ec2/remote/shell/setup.sh $APP_IP_ADDR $COLOR_END
 EOF
 )"

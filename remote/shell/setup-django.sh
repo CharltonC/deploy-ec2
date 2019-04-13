@@ -3,8 +3,8 @@
 logStart 'Django'
 
 # Add/Bind the IP Address value in Settings File
-# - `''` immediately after `-i` is for without creating backup file
-sed -i '' -e "/s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \[ '$APP_IP_ADDR' \]/1" $DJ_SETTINGS_FILE_PATH
+# - `''` immediately after `-i` is for without creating backup file (LINUX only, not Ubuntu)
+sed -i -e "/s/ALLOWED_HOSTS = \[\]/ALLOWED_HOSTS = \[ '$APP_IP_ADDR' \]/1" $DJ_SETTINGS_FILE_PATH
 
 # Enable Virtual Env.
 source $PROJECT_FOLDER_PATH/venv/bin/activate
