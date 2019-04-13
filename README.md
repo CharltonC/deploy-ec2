@@ -15,16 +15,17 @@
     * Python (v3+, from AWS EC2)
     * Python VirtualEnv
     * Django (v2.2+)    
+    * PostgreSQL
     * Gunicorn
     * Ngnix
 
 * This setup does not include the setup for the following:
-    * new non-root or non-ubuntu user (for security)
-    * firewall (for security)
-    * domain binding
-    * separate local settings and production settings files for Django
-    * `SECRET_KEY` and `DEBUG = True` not removed for Django
-    * URL not setup for Django 
+    * new non-root or non-ubuntu user in Ubuntu (for security)
+    * firewall for Ubuntu (for security)
+    * domain binding in AWS
+    * separate local settings and production settings files for Django (for production standards)
+    * `SECRET_KEY` and `DEBUG = True` removal for Django (for security)
+    * URL Routing setup for Django 
 
 ## Folder structure
 ```
@@ -60,8 +61,8 @@ deploy-ec2/         // project directory
 * This assumes you already have your `.pem` key
 * This assumes you already have your security group setup (which allows the App IP Address to be accessed via HTTP)
 * Get Public DNS IP Address and App IP Address, e.g. 
-    * Public DNS IP Address `ec2-203-0-113-25.compute-1.amazonaws.com`
-    * App IP Address `123.456.78`
+    * Public DNS (IPv4) IP Address `ec2-203-0-113-25.compute-1.amazonaws.com`
+    * Public/App (IPv4) IP Address `123.456.78`
 
 2. Local - Generate the list of Commands required (assume under project directory):
 ```
