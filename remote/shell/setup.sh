@@ -1,20 +1,23 @@
 #!/bin/bash
 
 ######################
+# PURPOSE
+######################
+# Configuration using Variables for DJANGO Deployment for Stack using:
+#   - Ubuntu
+#   - Python (with Python VirtualEnv)
+#   - Django
+#   - PostgreSQL Database
+#   - Gunicorn
+#   - Nginx
+# This setup aggregates all partial setups (e.g. ubuntu, python) into one single file
+# This is where EDIT/CHANGE should be made
+
+
+######################
 # USAGE
 ######################
-# 1. Local - Copy the SSH key to Remote:
-# scp -i ~/.ssh/aws-ec2.pem remote/ssh/{id_rsa,id_rsa.pub} ubuntu@<vpsIpv6IpAddress>:/home/ubuntu/.ssh/
-#
-# 2. Local - Login to Remote
-# ssh -i ~/.ssh/aws-ec2.pem ubuntu@<vpsIpv6IpAddress>
-#
-# 3. Remote - Clone the repository
-# eval $(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2.git
-#
-# 4. Remote - Run the Setup Shell Script (already `chmod +x`)
-# - note it must be `source` not `sudo`
-# source ~/dev/deploy-ec2/remote/shell/setup.sh <appIpAddress>
+# See "README.md" file
 
 
 ######################
@@ -50,7 +53,7 @@ PY_VENV_DEP_LIST_FILE_PATH="$PROJECT_FOLDER_PATH/remote/requirements.txt"
 
 # Aws
 APP_IP_SELF='0.0.0.0'
-APP_IP_ADDR=$1  # from command-line argument
+APP_IP_ADDR=${1:-''}  # from command-line argument
 APP_PORT=80
 
 # Django
