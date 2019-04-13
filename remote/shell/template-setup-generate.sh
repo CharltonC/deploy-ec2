@@ -14,6 +14,7 @@
 
 PUBLIC_DNS_IP_ADDR=${1:-''}
 APP_IP_ADDR=${2:-''}
+GIT_URL=${3:-'git@github.com:CharltonC/deploy-ec2.git'}
 COLOR_STEP='\033[33m'  # Yellow
 COLOR_CMD='\033[36m'   # Cyan
 COLOR_END='\033[0m'
@@ -27,7 +28,7 @@ $COLOR_STEP # 2. Local - Login to Remote: $COLOR_END
 $COLOR_CMD ssh -i ~/.ssh/aws-ec2.pem ubuntu@$PUBLIC_DNS_IP_ADDR $COLOR_END
 
 $COLOR_STEP # 3. Remote - Clone the repository: $COLOR_END
-$COLOR_CMD eval \$(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone git@github.com:CharltonC/deploy-ec2-demo.git $COLOR_END
+$COLOR_CMD eval \$(ssh-agent) && cd ~/ && mkdir dev && cd dev && git clone $GIT_URL $COLOR_END
 
 $COLOR_STEP # 4. Remote - Run the Setup Shell Script (): $COLOR_END
 $COLOR_STEP # - it must be \`source\` not \`sudo\` $COLOR_END
