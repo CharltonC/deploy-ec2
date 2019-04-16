@@ -6,6 +6,7 @@
 * [Folder Structure](#Folder-Structure)
 * [Getting Started](#Getting-Started)
 
+----------------
 
 ## About
 * This demo focuses on automating the deployment process by using Variable configuration (see `setup.sh` file)
