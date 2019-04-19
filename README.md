@@ -21,13 +21,16 @@
     * Ngnix
 
 * Setup Context:
-    * [ ] Ubuntu: new non-root or non-ubuntu user (for security)
-    * [ ] Ubuntu: firewall for applications (for security)
-    * [ ] AWS: domain binding in AWS
-    * [ ] Django: separate local settings and production settings files (for production standards)
-    * [ ] Django: `SECRET_KEY` removal in `settings.py` file (for security)
-    * [x] `DEBUG = False`  in `settings.py` file (for production standards)
-    * [x] URL Routing (showing a dummy Homepage/Index page only instead of Django debug page)
+    * Ubuntu:
+        * [ ] new non-root or non-ubuntu user (for security)
+        * [ ] firewall for applications (for security)
+    * AWS:
+        * [ ] domain binding in AWS
+    * Django:
+        * [ ] separate local settings and production settings files (for production standards)
+        * [ ] `SECRET_KEY` removal in `settings.py` file (for security)
+        * [x] `DEBUG = False`  in `settings.py` file (for production standards)
+        * [x] URL Routing (showing a dummy Homepage/Index page only instead of Django debug page)
 
 
 ## Folder structure
