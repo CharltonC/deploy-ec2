@@ -25,7 +25,7 @@
         * [ ] new non-root or non-ubuntu user (for security)
         * [ ] firewall for applications (for security)
     * AWS:
-        * [ ] domain binding in AWS
+        * [ ] DNS & Domain binding (for access via domain instead of IP Address)
     * Django:
         * [ ] separate local settings and production settings files (for production standards)
         * [ ] `SECRET_KEY` removal in `settings.py` file (for security)
